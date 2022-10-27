@@ -42,10 +42,12 @@
     <label for="exampleInputEmail1">Catégorie Centre</label>
 
      <select  name="category_id" class="form-control" >
+
     <option selected disabled  value="{{$centres->category->id}}" >{{$centres->category->categorie_name}}</option>
 
  @foreach ($Categoriecentre as $item)
- <option value="{{$item->id}}" >{{$item->categorie_name}}</option>
+
+ <option selected value="{{$item->id}}" >{{$item->categorie_name}}</option>
  @endforeach
 </select>
 

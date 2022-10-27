@@ -23,6 +23,12 @@ class CentreController extends Controller
         $centres = Centre::latest()->orderBy('id','desc')->paginate(2);
         return view('admin.centre.index' , compact('centres','categories'));
     }
+    public function searchCentre()
+    {
+        $search_text =$_GET['query'];
+        $centres =centre::where('centre_name','LIKE','%'.$search_text.'%')->get()->sortByDesc('id');
+        return view('Centre.search',compact('centres'));
+    }
 
 
     public function Storecentre(Request $request){
@@ -72,6 +78,7 @@ class CentreController extends Controller
         return Redirect()->back()->with($notification);
 
     }
+
 
 
     public function Edit($id){

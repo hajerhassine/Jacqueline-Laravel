@@ -9,7 +9,8 @@ use App\Http\Controllers\OffreController;
 use App\Http\Controllers\CategController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AccueilController;
+
+use App\Http\Controllers\accueilController;
 use App\Http\Controllers\CategoriecentreController;
 use App\Http\Controllers\CentreController;
 use App\Models\User;
@@ -29,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    
+
     echo " This is Home page ";
 });
 
@@ -38,9 +39,9 @@ Route::get('/about', function () {
     return view('about');
 });
 
-  
+
 Route::get('/contactasd-asdf-asdfsad', [ContactController::class, 'index'])->name('ariyan');
- 
+
 
 
 /// For Brand Route
@@ -66,6 +67,7 @@ Route::get('/categ/delete/{id}', [CategController::class, 'Delete']);
 
 /// For centre Route
 Route::get('/centre/all', [CentreController::class, 'Allcentre'])->name('all.centre');
+Route::get('/search',[CentreController::class,'searchCentre']);
 Route::post('/centre/add', [CentreController::class, 'Storecentre'])->name('store.centre');
 Route::get('/centre/edit/{id}', [CentreController::class, 'Edit']);
 Route::post('/centre/update/{id}', [CentreController::class, 'Update']);
@@ -107,7 +109,7 @@ Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio
 
 
 
-// Amdin Contact Page Route 
+// Amdin Contact Page Route
 Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
 Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
 Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
@@ -116,7 +118,7 @@ Route::get('/admin/message', [ContactController::class, 'AdminMessage'])->name('
 
 
 
-/// Home Contact Page Route 
+/// Home Contact Page Route
 Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
 Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
 
@@ -131,10 +133,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logout');
 
 
-/// Chanage Password and user Profile Route 
+/// Chanage Password and user Profile Route
 Route::get('/user/password', [ChangePass::class, 'CPassword'])->name('change.password');
 Route::post('/password/update', [ChangePass::class, 'UpdatePassword'])->name('password.update');
 
-// User Profile 
+// User Profile
 Route::get('/user/profile', [ChangePass::class, 'PUpdate'])->name('profile.update');
 Route::post('/user/profile/update', [ChangePass::class, 'UpdateProfile'])->name('update.user.profile');

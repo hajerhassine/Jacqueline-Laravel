@@ -386,8 +386,12 @@
                                                         You deserve better than a rushed massage by a rookie therapist in <br/>
                                                         a place that makes you feel more stressed
                                                     </div>
+
+
                                                     <div class="sc_columns columns_wrap">
+
                                                     @foreach($centres as $centre)
+
                                                         <div class="column-1_3 column_padding_bottom">
                                                             <div id="sc_services_809_1" class="sc_services_item">
                                                                 <div class="sc_services_item_featured post_featured">
@@ -401,12 +405,12 @@
                                                                 <div class="sc_services_item_content">
                                                                     <div class="sc_services_item_category">
                                                                     <a href="#" rel="tag">
-                                                                        {{ $centre->centre_localisation }}
+                                                                    {{ $centre->centre_localisation }}
                                                                     </a>
                                                                     </div>
                                                                     <h4 class="sc_services_item_title">
                                                                     <a href="#" rel="tag">
-                                                                        {{ $centre->centre_name }}
+                                                                    {{ $centre->centre_name }}
                                                                     </a>
                                                                     </h4>
                                                                     <div class="sc_services_item_description">
