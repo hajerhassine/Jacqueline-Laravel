@@ -8,28 +8,31 @@
 
 
     <div class="col-md-8">
+
      <div class="card">
 
-
-
-
-          <div class="card-header"> All Centers </div>
-
-          <form class="form-inline my-2 my-lg-0" type="get" action="{{url('/search')}}">
+     <form class="form-inline my-2 my-lg-0" type="get" action="{{url('/search')}}">
     <div class="d-flex">
         <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search by name" aria-label="search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </div>
 </form>
+
+
+          <div class="card-header"> All Centers </div>
+
+
     <table class="table">
   <thead>
   <tr>
-      <th scope="col" width="5%">Id</th>
-      <th scope="col" width="5%">Center Name</th>
-      <th scope="col"  width="5%">Center Image</th>
-      <th scope="col"  width="5%">Category Name</th>
-      <th scope="col"  width="5%">Center Description</th>
-      <th scope="col"  width="5%">Center Localisation</th>
+
+
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Category</th>
+
+      <th scope="col">Description</th>
+        <th scope="col">Localisation</th>
 
 
       <th scope="col">Action</th>
@@ -39,16 +42,17 @@
 
           @foreach($centres as $centre)
     <tr>
-      <th scope="row" width="5%"> {{  $centres->firstItem()+$loop->index }} </th>
-      <td scope="row" width="5%"> {{ $centre->centre_name}} </td>
-      <td scope="row" width="5%"> <img src="{{ asset($centre->centre_image) }}" style="height:40px; width:70px;" > </td>
-      <td scope="row" width="5%"> {{ $centre->category->categorie_name }} </td>
-      <td scope="row" width="5%"> {{ $centre->centre_description}} </td>
-      <td scope="row" width="5%"> {{ $centre->centre_localisation}} </td>
+
+      <td > {{ $centre->centre_name}} </td>
+      <td > <img src="{{ asset($centre->centre_image) }}" style="height:40px; width:60px;" > </td>
+      <td > {{ $centre->category->categorie_name }} </td>
+
+      <td > {{ $centre->centre_localisation}} </td>
+      <td > {{ $centre->centre_description}} </td>
 
        <td>
-       <a href="{{ url('centre/edit/'.$centre->id) }}" class="btn btn-info">Modifier</a>
-       <a href="{{ url('centre/delete/'.$centre->id) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer')" class="btn btn-danger">Supprimer</a>
+       <a href="{{ url('centre/edit/'.$centre->id) }}" class="btn btn-info">Update</a>
+       <a href="{{ url('centre/delete/'.$centre->id) }}" onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
         </td>
 
 
@@ -79,7 +83,7 @@
           <form action="{{ route('store.centre') }}" method="POST" enctype="multipart/form-data">
           @csrf
   <div class="form-group">
-    <label for="exampleInputEmail1">Center Name</label>
+    <label for="exampleInputEmail1">Name</label>
     <input type="text" name="centre_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
           @error('centre_name')
@@ -88,7 +92,7 @@
 
   </div>
   <div class="form-group">
-  <label for="exampleInputEmail1">Center Category</label>
+  <label for="exampleInputEmail1">Category</label>
 
                             <select name="categorie_id" class="form-control">
                             @foreach($categories as  $item)
@@ -103,7 +107,7 @@
 
 
                         <div class="form-group">
-    <label for="exampleInputEmail1">Center Description</label>
+    <label for="exampleInputEmail1">Description</label>
     <input type="text" name="centre_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
           @error('centre_description')
@@ -112,7 +116,7 @@
 
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Center Localisation</label>
+    <label for="exampleInputEmail1">Localisation</label>
     <input type="text" name="centre_localisation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
           @error('centre_localisation')
@@ -121,7 +125,7 @@
 
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Center Image</label>
+    <label for="exampleInputEmail1">Image</label>
     <input type="file" name="centre_image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
           @error('centre_image')

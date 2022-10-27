@@ -21,7 +21,7 @@
 
     <div class="col-md-8">
      <div class="card">
-          <div class="card-header"> Modifier Centre </div>
+          <div class="card-header"> Update Center </div>
           <div class="card-body">
 
 
@@ -30,7 +30,7 @@
           @csrf
    <input type="hidden" name="old_image" value="{{ $centres->centre_image }}">
   <div class="form-group">
-    <label for="exampleInputEmail1">Nom Centre</label>
+    <label for="exampleInputEmail1">Name</label>
     <input type="text" name="centre_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $centres->centre_name }}">
 
           @error('centre_name')
@@ -39,15 +39,15 @@
 
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Catégorie Centre</label>
+    <label for="exampleInputEmail1">Category</label>
 
      <select  name="category_id" class="form-control" >
 
-    <option selected disabled  value="{{$centres->category->id}}" >{{$centres->category->categorie_name}}</option>
+    <option  disabled  value="{{$centres->category->id}}" >{{$centres->category->categorie_name}}</option>
 
  @foreach ($Categoriecentre as $item)
 
- <option selected value="{{$item->id}}" >{{$item->categorie_name}}</option>
+ <option  value="{{$item->id}}" >{{$item->categorie_name}}</option>
  @endforeach
 </select>
 
@@ -55,7 +55,7 @@
 
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Description Centre</label>
+    <label for="exampleInputEmail1">Description</label>
     <input type="text" name="centre_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $centres->centre_name }}">
 
           @error('centre_description')
@@ -64,7 +64,7 @@
 
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Localisation Centre</label>
+    <label for="exampleInputEmail1">Localisation</label>
     <input type="text" name="centre_localisation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $centres->centre_name }}">
 
           @error('centre_localisation')
@@ -75,7 +75,7 @@
 
 
   <div class="form-group">
-    <label for="exampleInputEmail1">Image Centre </label>
+    <label for="exampleInputEmail1">Image</label>
     <input type="file" name="centre_image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $centres->centre_image }}">
 
           @error('centre_image')
@@ -92,7 +92,7 @@
 
 
 
-  <button type="submit" class="btn btn-primary">Modifier </button>
+  <button type="submit" class="btn btn-primary">Update </button>
 </form>
 
        </div>

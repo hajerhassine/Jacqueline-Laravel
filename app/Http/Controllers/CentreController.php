@@ -23,12 +23,6 @@ class CentreController extends Controller
         $centres = Centre::latest()->orderBy('id','desc')->paginate(2);
         return view('admin.centre.index' , compact('centres','categories'));
     }
-    public function searchCentre()
-    {
-        $search_text =$_GET['query'];
-        $centres =centre::where('centre_name','LIKE','%'.$search_text.'%')->get()->sortByDesc('id');
-        return view('Centre.search',compact('centres'));
-    }
 
 
     public function Storecentre(Request $request){
@@ -36,25 +30,20 @@ class CentreController extends Controller
         $validatedData = $request->validate([
             'centre_name' => 'required|unique:centres|min:4',
             'centre_image' => 'required|mimes:jpg.jpeg,png',
-            'centre_localisation' => 'required|unique:centres|min:4',
-            'centre_description' => 'required|unique:centres|min:4',
+            'centre_localisation' => 'required|min:4',
+            'centre_description' => 'required|min:6',
 
         ],
         [
-            'centre_name.required' => 'Please Input centre Name',
-            'centre_image.min' => 'Image centre Longer then 4 Characters',
+            'centre_name.required' => 'Please enter a valid centre Name',
+            'centre_image.min' => 'Image centre should be on jpg jpeg or png',
             'centre_localisation.required' => 'Please Input centre localisation',
             'centre_description.required' => 'Please Input centre description',
         ]);
 
         $centre_image =  $request->file('centre_image');
 
-        // $name_gen = hexdec(uniqid());
-        // $img_ext = strtolower($centre_image->getClientOriginalExtension());
-        // $img_name = $name_gen.'.'.$img_ext;
-        // $up_location = 'image/centre/';
-        // $last_img = $up_location.$img_name;
-        // $centre_image->move($up_location,$img_name);
+
 
         $name_gen = hexdec(uniqid()).'.'.$centre_image->getClientOriginalExtension();
         Image::make($centre_image)->resize(300,200)->save('image/brand/'.$name_gen);
@@ -92,17 +81,18 @@ class CentreController extends Controller
     public function Update(Request $request, $id){
 
         $validatedData = $request->validate([
-            'centre_name' => 'required|min:4',
+
+       
             'centre_localisation' => 'required|min:4',
-            'centre_description' => 'required|min:4',
+            'centre_description' => 'required|min:6',
 
 
         ],
         [
-            'centre_name.required' => 'Please Input centre Name',
+            'centre_name.required' => 'Please enter a valid centre Name',
+            'centre_image.min' => 'Image centre should be on jpg jpeg or png',
             'centre_localisation.required' => 'Please Input centre localisation',
             'centre_description.required' => 'Please Input centre description',
-            'centre_image.min' => 'centre Longer then 4 Characters',
         ]);
 
         $old_image = $request->old_image;
@@ -139,7 +129,7 @@ class CentreController extends Controller
                 'centre_name' => $request->centre_name,
                 'centre_localisation' => $request->centre_localisation,
                 'centre_description' => $request->centre_description,
-                'centre_image' => $request->centre_description,
+                'centre_image' => $request->centre_image,
                 'categorie_id' => $request->categorie_id,
                 'created_at' => Carbon::now()
             ]);
